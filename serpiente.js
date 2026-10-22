@@ -22,22 +22,42 @@
       dibujarTablero();
     }
 
-    function dibujarTablero(){
-      // Establecer el color de la línea
+    function dibujarTablero() {
+
+    // Establecer el color de las líneas
     ctx.strokeStyle = "#2e00ad";
 
-    // Iniciar un nuevo trazo
+    // Iniciar un nuevo trazado
     ctx.beginPath();
 
-    // Establecer el punto inicial
-    ctx.moveTo(25, 0);
+    // Dibujar las líneas verticales
+    for (let x = TAMANIO_CELDA; x < canvas.width; x += TAMANIO_CELDA) {
 
-    // Establecer el punto final
-    ctx.lineTo(25, canvas.height);
+        // Punto inicial: parte superior
+        ctx.moveTo(x, 0);
 
-    // Dibujar la línea
-    ctx.stroke();
+        // Punto final: parte inferior
+        ctx.lineTo(x, canvas.height);
     }
+
+    // Hacer visibles las líneas
+    ctx.stroke();
+
+    // Dibujar las líneas horizontales
+    for (let y = TAMANIO_CELDA; y < canvas.height; y += TAMANIO_CELDA) {
+
+        // Punto inicial: parte lateral izq
+        ctx.moveTo(0, y);
+
+        // Punto final: parte lateral der
+        ctx.lineTo(canvas.width, y);
+    }
+
+    // Hacer visibles las líneas
+    ctx.stroke();
+
+    
+}
 
 
 
