@@ -7,8 +7,29 @@
 
 body {
     min-height: 100vh;
-    background: linear-gradient(135deg, #1e293b, #0f172a);
-    color: white;
+
+    /* Fondo de página con imagen y capa oscura */
+    background-image:
+        linear-gradient(
+            rgba(10, 5, 30, 0.65),
+            rgba(10, 5, 30, 0.80)
+        ),
+        url("juegoSerpiente.jpg");
+
+    /* La imagen cubre toda la ventana */
+    background-size: cover;
+
+    /* Centrar la imagen */
+    background-position: center;
+
+    /* Evitar que se repita */
+    background-repeat: no-repeat;
+
+    /* Mantener el fondo mientras se desplaza la página */
+    background-attachment: fixed;
+
+    color: #f8fafc;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,17 +39,26 @@ body {
 .contenedor-juego {
     width: 100%;
     max-width: 720px;
-    background: #111827;
+
+    /* Panel oscuro semitransparente */
+    background: rgba(17, 24, 39, 0.92);
+
+    /* Borde violeta */
+    border: 2px solid #2e00ad;
+
     border-radius: 20px;
     padding: 24px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+
+    /* Sombra */
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65);
+
     text-align: center;
 }
 
 h1 {
     margin-bottom: 10px;
     font-size: 32px;
-    color: #22c55e;
+    color: #e97e0c;
 }
 
 .descripcion {
@@ -48,10 +78,12 @@ h1 {
 .tarjeta-info {
     flex: 1;
     min-width: 150px;
-    background: #1f2937;
+
+    background: rgba(46, 0, 173, 0.20);
+
     padding: 14px;
     border-radius: 14px;
-    border: 1px solid #374151;
+    border: 1px solid #7c3aed;
 }
 
 .tarjeta-info span {
@@ -90,8 +122,10 @@ canvas {
     border: none;
     border-radius: 12px;
     padding: 12px 16px;
-    background: #22c55e;
-    color: #052e16;
+
+    background: #e97e0c;
+    color: #ffffff;
+
     font-weight: bold;
     cursor: pointer;
     transition: 0.2s;
@@ -100,7 +134,7 @@ canvas {
 .controles button:hover,
 .acciones button:hover {
     transform: scale(1.05);
-    background: #86efac;
+    background: #ff9e33;
 }
 
 .vacio {
@@ -115,8 +149,8 @@ canvas {
 }
 
 .acciones .secundario {
-    background: #38bdf8;
-    color: #082f49;
+    background: #2e00ad;
+    color: #ffffff;
 }
 
 .mensaje {
