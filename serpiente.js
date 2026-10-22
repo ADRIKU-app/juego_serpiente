@@ -40,9 +40,6 @@
         ctx.lineTo(x, canvas.height);
     }
 
-    // Hacer visibles las líneas
-    ctx.stroke();
-
     // Dibujar las líneas horizontales
     for (let y = TAMANIO_CELDA; y < canvas.height; y += TAMANIO_CELDA) {
 
