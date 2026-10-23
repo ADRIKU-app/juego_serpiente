@@ -20,6 +20,8 @@
       limpiarCanvas();
 
       dibujarTablero();
+
+      pintarParte(23, 23);
     }
 
     function dibujarTablero() {
@@ -52,9 +54,25 @@
 
     // Hacer visibles las líneas
     ctx.stroke();
+  }
 
+  function pintarParte(lineaX, lineaY){
     
-}
+    // Calcular la posición real en px
+    let x = lineaX * TAMANIO_CELDA;
+    let y = lineaY * TAMANIO_CELDA;
 
+    //Color del cuadrado
+    ctx.fillStyle = "#ff0000";
+
+    //Dibujar el cuadrado
+    ctx.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
+
+    //Color del borde
+    ctx.strokeStyle = "#ffffff";
+
+    //Dibujar el botde
+    ctx.strokeRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
+  }
 
 
