@@ -4,6 +4,11 @@
     const ctx = canvas.getContext("2d");
 
     const TAMANIO_CELDA = 25;
+    const serpiente = [
+      {x:5, y:4},
+      {x:10, y:10},
+      {x:8, y:0}
+    ];
 
     // Primera pintura del juego al cargar la página
     dibujarTodo();
