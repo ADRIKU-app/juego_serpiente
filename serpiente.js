@@ -21,7 +21,7 @@
 
       dibujarTablero();
 
-      pintarParte(23, 23);
+      pintarParte(23, 0);
     }
 
     function dibujarTablero() {
