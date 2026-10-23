@@ -26,7 +26,7 @@
 
       dibujarTablero();
 
-      pintarParte(23, 0);
+      pintarSerpiente();
     }
 
     function dibujarTablero() {
@@ -78,6 +78,19 @@
 
     //Dibujar el botde
     ctx.strokeRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
+  }
+
+  function pintarSerpiente(){
+
+    //Recorrer todas las partes de la serpiente
+    for(let i=0; i<serpiente.length; i++){
+
+      //Obtener la parte actual de la serpiente
+      let parte = serpiente[i];
+
+      //Dibujar la parte en sus coordenadas
+      pintarParte(parte.x, parte.y);
+    }
   }
 
 
