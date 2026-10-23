@@ -5,9 +5,10 @@
 
     const TAMANIO_CELDA = 25;
     const serpiente = [
-      {x:5, y:4},
-      {x:10, y:10},
-      {x:8, y:0}
+      {x:12, y:12}, // Cabeza
+      {x:11, y:12}, // Cuerpo
+      {x:10, y:12}, // Cuerpo
+      {x:10, y:11}  // Cuerpo
     ];
 
     // Primera pintura del juego al cargar la página
@@ -61,14 +62,14 @@
     ctx.stroke();
   }
 
-  function pintarParte(lineaX, lineaY){
+  function pintarParte(lineaX, lineaY, color = "#ff0000"){
     
     // Calcular la posición real en px
     let x = lineaX * TAMANIO_CELDA;
     let y = lineaY * TAMANIO_CELDA;
 
     //Color del cuadrado
-    ctx.fillStyle = "#ff0000";
+    ctx.fillStyle = color;
 
     //Dibujar el cuadrado
     ctx.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
@@ -88,8 +89,17 @@
       //Obtener la parte actual de la serpiente
       let parte = serpiente[i];
 
+      //Pintar cabeza y cuerpo
+      if(i === 0){
+        //Dibujar cabeza amarilla
+        pintarParte(parte.x, parte.y, "#ffdd00");
+      }else{
+        //Dibujar cuerpo rojo
+        pintarParte(parte.x, parte.y, "#ff0000");
+      }
+
       //Dibujar la parte en sus coordenadas
-      pintarParte(parte.x, parte.y);
+      //pintarParte(parte.x, parte.y);
     }
   }
 
