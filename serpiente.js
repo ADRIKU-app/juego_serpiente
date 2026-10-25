@@ -103,4 +103,21 @@
     }
   }
 
+  function moverDerecha() {
+
+    // Recuperar la cabeza actual
+    let cabezaActual = serpiente[0];
+
+    // Crear una nueva cabeza una celda a la derecha
+    let nuevaCabeza = {
+        x: cabezaActual.x + 1,
+        y: cabezaActual.y
+    };
+
+    // Insertar la nueva cabeza al inicio
+    serpiente.unshift(nuevaCabeza);
+
+    // Eliminar el último segmento de la cola
+    serpiente.pop();
+}
 
