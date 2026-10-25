@@ -121,13 +121,85 @@
     serpiente.pop();
 }
 
+function moverIzquierda() {
+
+    // Recuperar la posición actual de la cabeza
+    let cabezaActual = serpiente[0];
+
+    // Crear una nueva cabeza una celda a la izquierda
+    let nuevaCabeza = {
+        x: cabezaActual.x - 1,
+        y: cabezaActual.y
+    };
+
+    // Insertar la nueva cabeza al inicio del arreglo
+    serpiente.unshift(nuevaCabeza);
+
+    // Eliminar el último segmento de la cola
+    serpiente.pop();
+}
+
+function moverArriba() {
+
+    // Recuperar la cabeza actual
+    let cabezaActual = serpiente[0];
+
+    // Crear una nueva cabeza una celda hacia arriba
+    let nuevaCabeza = {
+        x: cabezaActual.x,
+        y: cabezaActual.y - 1
+    };
+
+    // Insertar la cabeza nueva
+    serpiente.unshift(nuevaCabeza);
+
+    // Eliminar la cola
+    serpiente.pop();
+}
+
+function moverAbajo() {
+
+    // Recuperar la cabeza actual
+    let cabezaActual = serpiente[0];
+
+    // Crear una nueva cabeza una celda hacia abajo
+    let nuevaCabeza = {
+        x: cabezaActual.x,
+        y: cabezaActual.y + 1
+    };
+
+    // Insertar la cabeza nueva
+    serpiente.unshift(nuevaCabeza);
+
+    // Eliminar la cola
+    serpiente.pop();
+}
+
 function cambiarDireccion(direccion){
   //Verificar la dirección seleccionada
   if(direccion === "derecha"){
     //Mover la serpiente hacia la derecha
     moverDerecha();
-    //Actualizar el dibujo completo
-    dibujarTodo();
-  }
-}
 
+  } else if(direccion === "izquierda"){
+
+    //Mover la serpiente hacia la izquierda
+    moverIzquierda();
+
+  } else if(direccion === "arriba"){
+    //Mover la serpiente hacia arriba
+    moverArriba();
+
+  } else if(direccion === "abajo"){
+    
+    //Mover la serpiente hacia abajo
+    moverAbajo();
+  } else {
+
+    //Evitar movimientos si la dirección no es válida
+    return;
+  }
+
+  //Actualizar el dibujo completo
+    dibujarTodo();
+}
