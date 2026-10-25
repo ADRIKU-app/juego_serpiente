@@ -121,3 +121,13 @@
     serpiente.pop();
 }
 
+function cambiarDireccion(direccion){
+  //Verificar la dirección seleccionada
+  if(direccion === "derecha"){
+    //Mover la serpiente hacia la derecha
+    moverDerecha();
+    //Actualizar el dibujo completo
+    dibujarTodo();
+  }
+}
+
