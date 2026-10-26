@@ -19,6 +19,8 @@
     let comida = null;
     // Puntaje acumulado del jugador
     let puntaje = 0;
+    // Indica si la partida ha finalizado
+    let gameTerminado = false;
 
     // Primera pintura del juego al cargar la página
     dibujarTodo();
@@ -208,6 +210,17 @@ function cambiarDireccion(direccion) {
 
 function moverSerpiente() {
 
+    // No continuar si la partida ya terminó
+    if (gameTerminado) {
+      return;
+    }
+
+    // Comprobar los bordes antes de realizar el movimiento
+    if (tocaBorde()) {
+      finalizarJuego();
+      return;
+    }
+
     // Guardar la posición de la cola antes del movimiento
     let colaAnterior = {
         x: serpiente[serpiente.length - 1].x,
@@ -258,15 +271,25 @@ function moverSerpiente() {
 
 function iniciarJuego() {
 
-    // Evitar crear varios intervalos al presionar Iniciar repetidamente
+    // No permitir iniciar si la partida terminó
+    if (gameTerminado) {
+        console.log("La partida terminó. Debes reiniciar el juego.");
+        return;
+    }
+
+    // Evitar intervalos duplicados
     if (intervaloSerpiente !== null) {
         return;
     }
 
-    // Ejecutar moverSerpiente una vez por segundo
+    // Iniciar el movimiento automático
     intervaloSerpiente = setInterval(moverSerpiente, 1000);
 
-    // Mostrar información en consola
+    // Actualizar el estado visual
+    document.getElementById("estado").textContent = "Jugando";
+    document.getElementById("mensaje").textContent =
+        "¡La serpiente está en movimiento!";
+
     console.log("Juego iniciado");
 }
 
@@ -345,4 +368,58 @@ function actualizarPuntaje() {
 
     // Mostrar el puntaje actual en el HTML
     document.getElementById("puntaje").textContent = puntaje;
+}
+
+function finalizarJuego() {
+
+    // Marcar la partida como terminada
+    gameTerminado = true;
+
+    // Detener el movimiento automático
+    clearInterval(intervaloSerpiente);
+    intervaloSerpiente = null;
+
+    // Actualizar los mensajes del HTML
+    document.getElementById("estado").textContent = "GAME OVER";
+    document.getElementById("mensaje").textContent =
+        "¡GAME OVER! La serpiente chocó contra un borde.";
+
+    // Mostrar un mensaje en la consola
+    console.log("GAME OVER - Puntaje final:", puntaje);
+}
+
+function tocaBorde() {
+
+    // Obtener la cabeza actual
+    let cabeza = serpiente[0];
+
+    // Copiar sus coordenadas
+    let siguienteX = cabeza.x;
+    let siguienteY = cabeza.y;
+
+    // Calcular la siguiente posición según la dirección
+    if (direccionActual === "derecha") {
+        siguienteX++;
+
+    } else if (direccionActual === "izquierda") {
+        siguienteX--;
+
+    } else if (direccionActual === "arriba") {
+        siguienteY--;
+
+    } else if (direccionActual === "abajo") {
+        siguienteY++;
+    }
+
+    // Calcular la cantidad de columnas y filas
+    let columnas = canvas.width / TAMANIO_CELDA;
+    let filas = canvas.height / TAMANIO_CELDA;
+
+    // Devolver true si el movimiento supera algún borde
+    return (
+        siguienteX < 0 ||
+        siguienteX >= columnas ||
+        siguienteY < 0 ||
+        siguienteY >= filas
+    );
 }
