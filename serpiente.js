@@ -17,6 +17,8 @@
     let direccionActual = "derecha";
     // Guardar la posición de la comida
     let comida = null;
+    // Puntaje acumulado del jugador
+    let puntaje = 0;
 
     // Primera pintura del juego al cargar la página
     dibujarTodo();
@@ -206,6 +208,12 @@ function cambiarDireccion(direccion) {
 
 function moverSerpiente() {
 
+    // Guardar la posición de la cola antes del movimiento
+    let colaAnterior = {
+        x: serpiente[serpiente.length - 1].x,
+        y: serpiente[serpiente.length - 1].y
+    };
+
     // Revisar la dirección actual
     if (direccionActual === "derecha") {
 
@@ -226,6 +234,22 @@ function moverSerpiente() {
     } else {
 
         return;
+    }
+
+    // Comprobar si la cabeza alcanzó la comida
+    if (atrapaComida()) {
+
+        // Incrementar el puntaje
+        puntaje++;
+
+        // Actualizar el marcador HTML
+        actualizarPuntaje();
+
+        // Agregar nuevamente la posición anterior de la cola
+        serpiente.push(colaAnterior);
+
+        // Permitir que se genere una nueva comida
+        comida = null;
     }
 
     // Actualizar el tablero completo
@@ -315,4 +339,10 @@ function atrapaComida() {
         // La serpiente no alcanzó la comida
         return false;
     }
+}
+
+function actualizarPuntaje() {
+
+    // Mostrar el puntaje actual en el HTML
+    document.getElementById("puntaje").textContent = puntaje;
 }
