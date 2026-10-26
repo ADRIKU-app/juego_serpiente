@@ -289,3 +289,30 @@ function pintarComida() {
     // Dibujar la comida con un color diferente
     pintarParte(comida.x, comida.y, "#22c55e");
 }
+
+// ========================================
+// PARTE 9 - DETECTAR COLISIÓN CON COMIDA
+// ========================================
+
+function atrapaComida() {
+
+    // Obtener la posición actual de la cabeza
+    let cabeza = serpiente[0];
+
+    // Comprobar si existe comida
+    if (comida === null) {
+        return false;
+    }
+
+    // Verificar si las coordenadas coinciden
+    if (cabeza.x === comida.x && cabeza.y === comida.y) {
+
+        // La serpiente alcanzó la comida
+        return true;
+
+    } else {
+
+        // La serpiente no alcanzó la comida
+        return false;
+    }
+}
