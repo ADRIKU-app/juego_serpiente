@@ -21,6 +21,8 @@
     let puntaje = 0;
     // Indica si la partida ha finalizado
     let gameTerminado = false;
+    // Controla el tiempo entre movimientos en milisegundos
+    let velocidad = 800;
 
     // Primera pintura del juego al cargar la página
     dibujarTodo();
@@ -283,7 +285,7 @@ function iniciarJuego() {
     }
 
     // Iniciar el movimiento automático
-    intervaloSerpiente = setInterval(moverSerpiente, 1000);
+    intervaloSerpiente = setInterval(moverSerpiente, velocidad);
 
     // Actualizar el estado visual
     document.getElementById("estado").textContent = "Jugando";
