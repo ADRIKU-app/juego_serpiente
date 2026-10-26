@@ -15,6 +15,8 @@
     let intervaloSerpiente = null;
     // Dirección inicial de la serpiente
     let direccionActual = "derecha";
+    // Guardar la posición de la comida
+    let comida = null;
 
     // Primera pintura del juego al cargar la página
     dibujarTodo();
@@ -28,11 +30,18 @@
     }
 
     function dibujarTodo() {
-      limpiarCanvas();
 
-      dibujarTablero();
+    // Limpiar el canvas
+    limpiarCanvas();
 
-      pintarSerpiente();
+    // Dibujar la cuadrícula
+    dibujarTablero();
+
+    // Dibujar la comida
+    pintarComida();
+
+    // Dibujar la serpiente
+    pintarSerpiente();
     }
 
     function dibujarTablero() {
@@ -247,4 +256,36 @@ function pausarJuego() {
 
     // Mostrar mensaje de confirmación
     console.log("Juego pausado");
+}
+
+function pintarComida() {
+
+    // Calcular la cantidad de columnas y filas
+    let columnas = canvas.width / TAMANIO_CELDA;
+    let filas = canvas.height / TAMANIO_CELDA;
+
+    // Generar una posición solo si todavía no hay comida
+    if (comida === null) {
+
+    let x;
+    let y;
+    let ocupada;
+
+    do {
+
+        x = Math.floor(Math.random() * columnas);
+        y = Math.floor(Math.random() * filas);
+
+        // Comprobar si la celda pertenece al cuerpo
+        ocupada = serpiente.some(parte =>
+            parte.x === x && parte.y === y
+        );
+
+    } while (ocupada);
+
+    comida = {x: x, y: y};
+    }
+
+    // Dibujar la comida con un color diferente
+    pintarParte(comida.x, comida.y, "#22c55e");
 }
