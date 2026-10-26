@@ -423,3 +423,52 @@ function tocaBorde() {
         siguienteY >= filas
     );
 }
+
+function reiniciarSerpiente() {
+
+    // Eliminar todos los segmentos actuales
+    serpiente.splice(0, serpiente.length);
+
+    // Restaurar la cabeza y el cuerpo inicial
+    serpiente.push(
+        {x:12, y:12}, // Cabeza
+        {x:11, y:12}, // Cuerpo
+        {x:10, y:12}, // Cuerpo
+        {x:10, y:11}  // Cuerpo
+    );
+}
+
+function reiniciarJuego() {
+
+    // 1. Detener cualquier movimiento automático
+    clearInterval(intervaloSerpiente);
+    intervaloSerpiente = null;
+
+    // 2. Restaurar la serpiente original
+    reiniciarSerpiente();
+
+    // 3. Restaurar la dirección inicial
+    direccionActual = "derecha";
+
+    // 4. Desactivar el estado GAME OVER
+    gameTerminado = false;
+
+    // 5. Reiniciar el puntaje
+    puntaje = 0;
+    actualizarPuntaje();
+
+    // 6. Generar nueva comida en el siguiente dibujo
+    comida = null;
+
+    // 7. Restaurar los mensajes de la interfaz
+    document.getElementById("estado").textContent = "Listo";
+
+    document.getElementById("mensaje").textContent =
+        "Juego reiniciado. Presiona Iniciar para comenzar.";
+
+    // 8. Limpiar y redibujar todo el tablero
+    dibujarTodo();
+
+    console.log("Juego reiniciado correctamente");
+}
+
