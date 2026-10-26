@@ -13,6 +13,8 @@
 
     // Guardar el identificador del intervalo
     let intervaloSerpiente = null;
+    // Dirección inicial de la serpiente
+    let direccionActual = "derecha";
 
     // Primera pintura del juego al cargar la página
     dibujarTodo();
@@ -178,39 +180,47 @@ function moverAbajo() {
     serpiente.pop();
 }
 
-function cambiarDireccion(direccion){
-  //Verificar la dirección seleccionada
-  if(direccion === "derecha"){
-    //Mover la serpiente hacia la derecha
-    moverDerecha();
+function cambiarDireccion(direccion) {
 
-  } else if(direccion === "izquierda"){
+    // Verificar que la dirección sea válida
+    if (
+        direccion === "derecha" ||
+        direccion === "izquierda" ||
+        direccion === "arriba" ||
+        direccion === "abajo"
+    ) {
 
-    //Mover la serpiente hacia la izquierda
-    moverIzquierda();
-
-  } else if(direccion === "arriba"){
-    //Mover la serpiente hacia arriba
-    moverArriba();
-
-  } else if(direccion === "abajo"){
-    
-    //Mover la serpiente hacia abajo
-    moverAbajo();
-  } else {
-
-    //Evitar movimientos si la dirección no es válida
-    return;
-  }
-
-  //Actualizar el dibujo completo
-    dibujarTodo();
+        // Guardar la última dirección seleccionada
+        direccionActual = direccion;
+    }
 }
 
 function moverSerpiente() {
 
-    // Mensaje temporal para comprobar el intervalo
-    console.log("moviendo");
+    // Revisar la dirección actual
+    if (direccionActual === "derecha") {
+
+        moverDerecha();
+
+    } else if (direccionActual === "izquierda") {
+
+        moverIzquierda();
+
+    } else if (direccionActual === "arriba") {
+
+        moverArriba();
+
+    } else if (direccionActual === "abajo") {
+
+        moverAbajo();
+
+    } else {
+
+        return;
+    }
+
+    // Actualizar el tablero completo
+    dibujarTodo();
 }
 
 function iniciarJuego() {
