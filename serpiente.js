@@ -11,6 +11,9 @@
       {x:10, y:11}  // Cuerpo
     ];
 
+    // Guardar el identificador del intervalo
+    let intervaloSerpiente = null;
+
     // Primera pintura del juego al cargar la página
     dibujarTodo();
 
@@ -202,4 +205,36 @@ function cambiarDireccion(direccion){
 
   //Actualizar el dibujo completo
     dibujarTodo();
+}
+
+function moverSerpiente() {
+
+    // Mensaje temporal para comprobar el intervalo
+    console.log("moviendo");
+}
+
+function iniciarJuego() {
+
+    // Evitar crear varios intervalos al presionar Iniciar repetidamente
+    if (intervaloSerpiente !== null) {
+        return;
+    }
+
+    // Ejecutar moverSerpiente una vez por segundo
+    intervaloSerpiente = setInterval(moverSerpiente, 1000);
+
+    // Mostrar información en consola
+    console.log("Juego iniciado");
+}
+
+function pausarJuego() {
+
+    // Detener el intervalo activo
+    clearInterval(intervaloSerpiente);
+
+    // Restablecer la variable
+    intervaloSerpiente = null;
+
+    // Mostrar mensaje de confirmación
+    console.log("Juego pausado");
 }
